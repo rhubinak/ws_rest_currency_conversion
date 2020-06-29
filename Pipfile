@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
+pytest-aiohttp = "*"
 
 [packages]
 celery = {extras = ["redis"], version = "*"}

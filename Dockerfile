@@ -1,9 +1,9 @@
-FROM python:3
+FROM python:alpine
+WORKDIR /
 ADD *.py /
 ADD Pipfile /
 ADD Pipfile.lock /
-RUN pip install pipenv
+RUN apk add --no-cache gcc musl-dev linux-headers
+RUN pip install pipenv celery[redis] requests
 RUN pipenv install
-CMD [ "redis" ]
-CMD [ "pipenv", "run", "./celery.py" ]
-CMD [ "pipenv", "run", "./main.py" ]
+CMD pipenv run python main.py
